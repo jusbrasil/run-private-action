@@ -18,4 +18,3 @@ runs:
         submodules: true
         repository: ${{ inputs.repo }}
         token: ${{ inputs.token }}
-        path: ./.private-actions
