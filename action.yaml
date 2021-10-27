@@ -8,9 +8,6 @@ inputs:
   token:
     description: Github token
     required: true
-  actionPath:
-    description: The path to which action to run
-    required: false
 
 runs:
   using: composite
@@ -22,6 +19,3 @@ runs:
         repository: ${{ inputs.repo }}
         token: ${{ inputs.token }}
         path: ./.private-actions
-  
-    - uses: ./.private-actions/${{ inputs.actionPath }}
-      if: ${{ inputs.actionPath }}
