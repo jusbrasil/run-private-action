@@ -1,0 +1,26 @@
+name: Run private composite action
+description: Clones the private repo and runs the desired action
+
+inputs:
+  repo:
+    description: What repo to run
+    required: true
+  token:
+    description: Github token
+    required: true
+  actionPath:
+    description: The path to which action to run
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout private action
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+        repository: ${{ inputs.repo }}
+        token: ${{ inputs.token }}
+        path: ./.private-actions
+  
+    - uses: ./.private-actions/${{ inputs.actionPath }}
